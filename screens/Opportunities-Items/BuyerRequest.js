@@ -1,7 +1,8 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import { Entypo, Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { useFonts } from 'expo-font';
 
 const BuyerRequest = () => {
   const IconDetails = [
@@ -15,6 +16,14 @@ const BuyerRequest = () => {
     { text: "Apartamento" },
     { text: "Parking" },
   ];
+
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Medium.ttf'), // Adjust the path if necessary
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>
@@ -35,7 +44,7 @@ const BuyerRequest = () => {
               <View key={index} style={styles.detailItem}>
                 {detail.icon}
                 <Text style={styles.locationText}>{detail.text}</Text>
-                {detail.showDot && <Entypo name="dot-single" size={24} color="#7D869D" />}
+                {detail.showDot && <Entypo name="dot-single" size={24} color="#7D869D" style={styles.dot} />}
               </View>
             ))}
           </View>
@@ -48,13 +57,21 @@ const BuyerRequest = () => {
           ))}
         </View>
         <View style={styles.contactContainer}>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-photo/confident-young-woman-with-her-arms-crossed-looking-away_23-2148130373.jpg",
+            }}
+            style={styles.image}
+          />
           <View>
-            <Text>Yana Baskal</Text>
-            <Text>Yana@gmail.com</Text>
+            <Text style={styles.contactName}>Yana Baskal</Text>
+            <Text style={styles.contactEmail}>Yana@gmail.com</Text>
+          </View>
+          <View style={{marginTop:15}}>
+          <Entypo name="dot-single" size={24} color="#7D869D" />
           </View>
           <View style={styles.phoneContainer}>
-            <Entypo name="dot-single" size={24} color="#7D869D" />
-            <Text>+34 677 130 650</Text>
+            <Text style={styles.contactPhone}>+34 677 130 650</Text>
           </View>
           <TouchableOpacity>
             <MaterialIcons name="email" size={24} color="#757E95" />
@@ -75,7 +92,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     paddingVertical: 20,
     marginRight: 1,
-    height:290
+    height: 290,
   },
   headerContainer: {
     flexDirection: "row",
@@ -95,11 +112,12 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
     color: "#fff",
+    fontFamily: 'CustomFont',
   },
   priceText: {
     fontSize: 16,
-    fontWeight: "bold",
     marginRight: 15,
+    fontWeight:'800'
   },
   locationContainer: {
     flexDirection: "row",
@@ -111,6 +129,8 @@ const styles = StyleSheet.create({
     color: "#7D869D",
     fontSize: 13,
     fontWeight: "400",
+    fontFamily: 'CustomFont',
+    marginLeft:5
   },
   paddingContainer: {
     padding: 20,
@@ -128,6 +148,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  dot: {
+    marginLeft: 8,
+  },
   featuresContainer: {
     justifyContent: "space-evenly",
     alignItems: "center",
@@ -144,6 +167,8 @@ const styles = StyleSheet.create({
   featureText: {
     fontSize: 12,
     fontWeight: "500",
+    fontFamily: 'CustomFont',
+    color: '#7D869D',
   },
   contactContainer: {
     height: 63,
@@ -158,5 +183,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop:17
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+  },
+  contactName: {
+    // fontFamily: 'CustomFont',
+    fontSize: 12,
+    fontWeight: '900',
+    color: '#000',
+  },
+  contactEmail: {
+    fontFamily: 'CustomFont',
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#7D869D',
+  },
+  contactPhone: {
+    fontFamily: 'CustomFont',
+    fontSize: 12,
+    fontWeight: '400',
+    color: '#7D869D',
   },
 });

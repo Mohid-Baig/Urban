@@ -11,10 +11,18 @@ import { TouchableOpacity } from "react-native";
 import { useNavigation } from "expo-router";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import ProfileTopBar from "../../screens/ProfileItems/ProfileTopBar";
+import {useFonts} from 'expo-font'
+
 
 const Profile = () => {
   const navigation = useNavigation();
-  
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Medium.ttf'), // Adjust the path if necessary
+  });
+
+  if (!fontsLoaded) {
+    return null; 
+  }
   return (
     <View style={styles.scrollContainer}>
       {/* Profile Background Image */}
@@ -124,6 +132,7 @@ const styles = StyleSheet.create({
   profileName: {
     fontSize: 16,
     fontWeight: "bold",
+    fontFamily: 'CustomFont', 
   },
   locationContainer: {
     flexDirection: "row",
@@ -133,6 +142,7 @@ const styles = StyleSheet.create({
   locationText: {
     fontSize: 13,
     color: "#7D869D",
+    fontFamily: 'CustomFont', 
   },
   buttonRow: {
     flexDirection: "row",
@@ -154,6 +164,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "#fff",
     marginLeft: 5,
+    fontFamily: 'CustomFont', 
   },
   followButton: {
     backgroundColor: "#fff",
@@ -168,6 +179,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: 13,
     color: "#000",
+    fontFamily: 'CustomFont', 
   },
   statsRow: {
     flexDirection: "row",
@@ -191,11 +203,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
   },
   statNumber: {
-    fontSize: 18,
-    fontWeight: "700",
+    fontSize: 16,
+    fontWeight: "800",
   },
   statLabel: {
     fontSize: 12,
     color: "#BEC3CE",
+    fontFamily: 'CustomFont', 
   },
 });

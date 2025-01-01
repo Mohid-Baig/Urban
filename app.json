@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Urban",
-    "slug": "Urban",
+    "slug": "urban",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -28,7 +28,8 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
@@ -38,8 +39,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "285cdd0a-7494-4d8a-8ba7-098c80017a2f"
+        "projectId": "be12c824-9d5f-4373-b63c-1ad8b5cb602b"
       }
-    }
+    },
+    "owner": "mohid-baig"
   }
 }

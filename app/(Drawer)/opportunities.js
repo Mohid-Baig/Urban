@@ -8,56 +8,28 @@ import {
 import React from "react";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import DrawerIcon from "../../screens/DrawerItems/DrawerIcon";
-import BuyerRequest from "../../screens/Opportunities-Items/BuyerRequest";
-import RenterRequests from "../../screens/Opportunities-Items/RenterRequests";
-import { useNavigation } from "expo-router";
+import OpportunitiesTopTab from "../../screens/Opportunities-Items/OpportunitiesTopTab";
+import {useFonts} from 'expo-font'
 const Opportunities = () => {
-  const navigation = useNavigation();
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Medium.ttf'), // Adjust the path if necessary
+  });
+
+  if (!fontsLoaded) {
+    return null; 
+  }
   return (
     <View style={styles.main}>
       <View style={styles.header}>
+        <View style={{flexDirection:'row'}}>
         <DrawerIcon />
-        <Text style={styles.title}>OPORTUNIDADES</Text>
+        <Text style={{fontFamily: 'CustomFont',fontSize:18,fontWeight:'600',marginLeft:15}}>OPORTUNIDADES</Text>
+        </View>
         <TouchableOpacity>
           <Ionicons name="search" size={24} color="#BEC3CE" />
         </TouchableOpacity>
       </View>
-      <View
-        style={styles.headerBorder}
-      />
-      <ScrollView
-        contentContainerStyle={styles.scrollContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={[styles.content]}>
-          <Text style={styles.sectionTitle}>Peticiónes</Text>
-        </View>
-
-        <View>
-          <BuyerRequest />
-        </View>
-
-        <View style={{ marginTop: 15 }}>
-          <RenterRequests />
-        </View>
-
-        <View style={{ marginTop: 15 }}>
-          <BuyerRequest />
-        </View>
-
-        <View style={{ marginTop: 15 }}>
-          <RenterRequests />
-        </View>
-      </ScrollView>
-
-      {/* Fixed Button Outside ScrollView */}
-      <TouchableOpacity
-        style={styles.floatingButton}
-        onPress={()=>navigation.navigate('Home')}
-      >
-        <AntDesign name="plus" size={12} color="#fff" />
-        <Text style={styles.floatingButtonText}>Petición</Text>
-      </TouchableOpacity>
+      <OpportunitiesTopTab />
     </View>
   );
 };
@@ -86,39 +58,5 @@ const styles = StyleSheet.create({
     borderTopWidth: 3,
     marginTop: -2,
     marginLeft: 45,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginRight: 80,
-  },
-  content: {
-    padding: 10,
-    backgroundColor: "#fff",
-  },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#000",
-    marginLeft: 10,
-  },
-  scrollContainer: {
-    paddingBottom: 50,
-  },
-  floatingButton: {
-    height: 60,
-    width: 60,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ED8F03",
-    borderRadius: 50,
-    position: "absolute",
-    bottom: 20,  // Fixed at the bottom
-    right: 20,   // Fixed at the right
-  },
-  floatingButtonText: {
-    fontSize: 12,
-    fontWeight: "400",
-    color: "#fff",
   },
 });

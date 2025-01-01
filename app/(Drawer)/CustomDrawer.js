@@ -2,7 +2,15 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import DrawerItemsDesign from "../../screens/DrawerItems/DrawerItemsDesign";
+import {useFonts} from 'expo-font'
 const CustomDrawer = (props) => {
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Medium.ttf'), // Adjust the path if necessary
+  });
+
+  if (!fontsLoaded) {
+    return null; 
+  }
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.main}>
@@ -20,10 +28,10 @@ const CustomDrawer = (props) => {
             style={styles.image}
           />
           <View>
-            <Text style={{ fontSize: 16, fontWeight: "600" }}>
+            <Text style={{ fontSize: 16, fontWeight: "600" , fontFamily: 'CustomFont', }}>
               Angel Septimes
             </Text>
-            <Text style={{ fontSize: 14, fontWeight: "400",color:'#7D869D' }}>Agente</Text>
+            <Text style={{ fontSize: 14, fontWeight: "400",color:'#7D869D', fontFamily: 'CustomFont', }}>Agente</Text>
           </View>
         </View>
 

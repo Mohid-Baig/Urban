@@ -3,12 +3,22 @@ import React from 'react'
 
 const Peticiones = () => {
   return (
-    <View>
-      <Text>Peticiones</Text>
-    </View>
+    <View style={styles.main}>
+    <Text style={styles.text}>Coming soon</Text>
+</View>
   )
 }
 
 export default Peticiones
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  main:{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+  text:{
+      fontSize: 12,
+      fontWeight: 'bold'
+  }
+})

@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import {useFonts} from 'expo-font'
 
 const Catalogo = () => {
   const PropertYCards = [
@@ -27,7 +28,12 @@ const Catalogo = () => {
     { icon: <FontAwesome name="bath" size={24} color="#7D869D" />, text: "2 bath", showDot: true },
     { icon: <Entypo name="map" size={24} color="#7D869D" />, text: "90m2", showDot: false },
   ];
-
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Black.ttf'), // Adjust the path if necessary
+  });
+  if (!fontsLoaded) {
+    return null; 
+  }
   return (
     <ScrollView style={styles.mainContainer} showsVerticalScrollIndicator={false}>
       {PropertYCards.map((item, index) => (
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
   },
   priceText: {
     fontSize: 14,
-    fontWeight: "700",
+    fontWeight: "800",
   },
   locationTitle: {
     fontSize: 14,
@@ -110,6 +116,7 @@ const styles = StyleSheet.create({
     marginLeft: 12,
     marginTop: 5,
     color: "#15171C",
+    fontFamily: 'CustomFont',
   },
   locationContainer: {
     flexDirection: "row",
@@ -121,6 +128,8 @@ const styles = StyleSheet.create({
     color: "#7D869D",
     fontSize: 13,
     fontWeight: "400",
+    marginLeft:8,
+    fontFamily: 'CustomFont',
   },
   propertyDetailsContainer: {
     flexDirection: "row",

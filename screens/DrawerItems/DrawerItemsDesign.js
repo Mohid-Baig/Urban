@@ -6,10 +6,17 @@ import {
   MaterialIcons,
   FontAwesome6
 } from "@expo/vector-icons";
+import {useFonts} from 'expo-font'
 
 const DrawerItemsDesign = ({ props }) => {
   const activeRouteName = props.state.routes[props.state.index].name; // Get the active route name
+  const [fontsLoaded] = useFonts({
+    'CustomFont': require('../../assets/fonts/Poppins-Medium.ttf'), // Adjust the path if necessary
+  });
 
+  if (!fontsLoaded) {
+    return null; 
+  }
   return (
     <View>
       {/* Profile Screen */}
@@ -98,5 +105,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500",
     color: "#000",
+     fontFamily: 'CustomFont',
   },
 });

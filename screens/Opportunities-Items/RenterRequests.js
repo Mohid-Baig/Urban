@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { ScrollView, StyleSheet, Text, View, Image } from "react-native";
 import {
   Entypo,
   Ionicons,
@@ -7,8 +7,17 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
+import { useFonts } from "expo-font";
 
 const BuyerRequest = () => {
+  const [fontsLoaded] = useFonts({
+    CustomFont: require("../../assets/fonts/Poppins-Medium.ttf"), // Adjust the path if necessary
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
@@ -18,24 +27,38 @@ const BuyerRequest = () => {
           </View>
           <Text style={styles.priceText}>350.000€</Text>
         </View>
-        <View style={{paddingHorizontal:25}}>
-        <View style={{
-           borderBottomWidth:1,
-           borderBottomColor:'#7D869D',
-           paddingBottom:15,
-        }} />
+        <View style={styles.separatorContainer}>
+          <View style={styles.separatorLine} />
         </View>
-        <View style={{ height: "55%", backgroundColor: "#fff",padding:20,marginTop:15 }}>
-          <Text style={{fontSize:12,fontWeight:'400'}}>Thank you! That was very helpful! Get in touch!</Text>
+        <View style={styles.messageContainer}>
+          <Text style={styles.messageText}>
+            Thank you! That was very helpful! Get in touch!
+          </Text>
         </View>
         <View style={styles.contactContainer}>
+          <Image
+            source={{
+              uri: "https://img.freepik.com/free-photo/confident-young-woman-with-her-arms-crossed-looking-away_23-2148130373.jpg",
+            }}
+            style={styles.image}
+          />
           <View>
-            <Text>Yana Baskal</Text>
-            <Text>Yana@gmail.com</Text>
+            <Text
+              style={{
+                fontSize: 12,
+                fontWeight: "900",
+                color: "#000",
+              }}
+            >
+              Yana Baskal
+            </Text>
+            <Text style={styles.contactText}>Yana@gmail.com</Text>
+          </View>
+          <View style={{marginTop:15}}>
+          <Entypo name="dot-single" size={24} color="#7D869D" />
           </View>
           <View style={styles.phoneContainer}>
-            <Entypo name="dot-single" size={24} color="#7D869D" />
-            <Text>+34 677 130 650</Text>
+            <Text style={styles.contactText}>+34 677 130 650</Text>
           </View>
           <TouchableOpacity>
             <MaterialIcons name="email" size={24} color="#757E95" />
@@ -76,11 +99,32 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
     color: "#fff",
+    fontFamily: "CustomFont",
   },
   priceText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: "800",
     marginRight: 15,
+  },
+  separatorContainer: {
+    paddingHorizontal: 25,
+  },
+  separatorLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#7D869D",
+    paddingBottom: 15,
+  },
+  messageContainer: {
+    height: "55%",
+    backgroundColor: "#fff",
+    padding: 20,
+    marginTop: 15,
+  },
+  messageText: {
+    fontSize: 12,
+    fontWeight: "400",
+    fontFamily: "CustomFont",
+    color: "#000", // Added color for consistency
   },
   contactContainer: {
     height: 63,
@@ -95,5 +139,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop:17
+  },
+  image: {
+    width: 40,
+    height: 40,
+    borderRadius: 30,
+    // marginRight: 5,
+  },
+  contactText: {
+    fontFamily: "CustomFont",
+    fontSize: 12,
+    fontWeight: "400",
+    color: "#7D869D",
   },
 });
